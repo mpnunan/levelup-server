@@ -1,0 +1,26 @@
+[
+  {
+    "model": "levelupapi.game",
+    "pk": 1,
+    "fields": {
+      "game_type": 1,
+      "title": "Ticket To Ride",
+      "maker": "Alan R. Moon",
+      "gamer": 1,
+      "number_of_players": 4,
+      "skill_level": 10
+    }
+  },
+  {
+    "model": "levelupapi.game",
+    "pk": 2,
+    "fields": {
+      "game_type": 2,
+      "title": "Dungeons & Dragons",
+      "maker": "Wizards of the West Coast",
+      "gamer": 1,
+      "number_of_players": 6,
+      "skill_level": 10
+    }
+  }
+]
