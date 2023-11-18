@@ -15,9 +15,12 @@ class EventView(ViewSet):
         Returns:
             Response -- JSON serialized game type
         """
-        event = Event.objects.get(pk=pk)
-        serializer = EventSerializer(event)
-        return Response(serializer.data)
+        try:
+            event = Event.objects.get(pk=pk)
+            serializer = EventSerializer(event)
+            return Response(serializer.data)
+        except Event.DoesNotExist as ex:
+            return Response({'message': ex.args[0]}, status=status.HTTP_404_NOT_FOUND)
 
 
     def list(self, request):
@@ -27,6 +30,11 @@ class EventView(ViewSet):
             Response -- JSON serialized list of game types
         """
         events = Event.objects.all()
+        
+        game = request.query_params.get('game', None)
+        if game is not None:
+            events = events.filter(game_id=game)
+        
         serializer = EventSerializer(events, many=True)
         return Response(serializer.data)
 
